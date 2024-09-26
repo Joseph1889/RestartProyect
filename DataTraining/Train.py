@@ -45,6 +45,7 @@ Rforest.fit(X_train, y_train)
 y_pred = Rforest.predict(X_test)
 #y_pred_train = Rforest.predict(X_train)
 
+"""
 #alores_para_predecir = np.array([[298.1, 308.6, 1551, 42.8, 0, 0, 0, 1]])
 valores_para_predecir = np.array([[298.9,309.1,2861,4.6,143,0,1,0]])
 prediccion = Rforest.predict(valores_para_predecir)
@@ -52,8 +53,8 @@ if prediccion[0] == 1:
     print("El modelo predice que habrá una falla en la máquina.")
 else:
     print("El modelo predice que no habrá una falla en la máquina.")
+"""
 
-""""
 # Calculate metrics
 accuracy = accuracy_score(y_test, y_pred)
 
@@ -86,4 +87,3 @@ with mlflow.start_run():
         input_example=X_train,
         registered_model_name="model",
     )
-"""
