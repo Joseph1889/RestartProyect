@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-ml-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-ml-app
+  template:
+    metadata:
+      labels:
+        app: flask-ml-app
+    spec:
+      containers:
+      - name: flask-ml-app
+        image: leps2408/flask-ml-app:latest  # Cambia por tu imagen en Docker Hub
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MLFLOW_S3_ENDPOINT_URL
+          value: "http://172.23.73.213:9000"  # Cambia esto por la URI de tu servidor MLflow
+        - name: AWS_ACCESS_KEY_ID
+          value: "mi_usuario"  # Reemplaza con tu usuario de MinIO
+        - name: AWS_SECRET_ACCESS_KEY
+          value: "mi_contraseña_segura"  # Reemplaza con tu contraseña de MinI
+
