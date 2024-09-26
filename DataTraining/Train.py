@@ -2,29 +2,15 @@ import mlflow
 from mlflow.models import infer_signature
 
 import pandas as pd
-from sklearn import datasets
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import statistics
-import seaborn as sns
-from sklearn.model_selection import train_test_split
-from imblearn.datasets import make_imbalance
-from imblearn.metrics import classification_report_imbalanced
-from imblearn.pipeline import make_pipeline
-from imblearn.under_sampling import NearMiss
-from imblearn.over_sampling import RandomOverSampler
+from sklearn.metrics import accuracy_score
 from imblearn.combine import SMOTETomek
-from collections import Counter
-
-
 from sklearn.ensemble import RandomForestClassifier
+import numpy as np
 
-df=pd.read_csv("DataModeling/Dataset.csv")
+
+#df=pd.read_csv("DataModeling/Dataset.csv")
+df = pd.read_csv("/home/joseph2408/RestartProyect/DataModeling/Dataset.csv")
 
 #Resampling
 X = df.drop('Machine failure', axis=1)  # Drop the 'Machine failure' column from the features
@@ -46,7 +32,7 @@ y_pred = Rforest.predict(X_test)
 #y_pred_train = Rforest.predict(X_train)
 
 """
-#alores_para_predecir = np.array([[298.1, 308.6, 1551, 42.8, 0, 0, 0, 1]])
+#valores_para_predecir = np.array([[298.1, 308.6, 1551, 42.8, 0, 0, 0, 1]])
 valores_para_predecir = np.array([[298.9,309.1,2861,4.6,143,0,1,0]])
 prediccion = Rforest.predict(valores_para_predecir)
 if prediccion[0] == 1:
@@ -59,8 +45,8 @@ else:
 accuracy = accuracy_score(y_test, y_pred)
 
 # Set our tracking server uri for logging
-#mlflow.set_tracking_uri(uri="http://172.23.73.213:30000")
-mlflow.set_tracking_uri(uri="http://127.0.0.1:8080")
+mlflow.set_tracking_uri(uri="http://172.23.73.213:30000")
+#mlflow.set_tracking_uri(uri="http://127.0.0.1:8080")
 
 # Create a new MLflow Experiment
 mlflow.set_experiment("Milling-Experiment")
